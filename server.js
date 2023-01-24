@@ -10,8 +10,8 @@ app.use(
   })
 );
 
-router.get("/", async (req, res) => {
-  const { url } = req.query;
+router.get("*", async (req, res) => {
+  const url = req.originalUrl.slice(1);
   const result = await axios.get(url);
 
   res.json({
@@ -24,3 +24,5 @@ app.use(router);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = app;
